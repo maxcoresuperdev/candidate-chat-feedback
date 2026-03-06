@@ -1,0 +1,14 @@
+node_modules
+dist
+build
+coverage
+.env
+.DS_Store
+
+api/.nestjs
+api/dist
+api/coverage
+
+web/dist
+web/node_modules
+web/.env

@@ -1,0 +1,42 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: candidate_chat_mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: candidate_chat_api
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - MONGO_URI=mongodb://mongo:27017/candidate_chat
+      - JWT_SECRET=dev_secret_change_me
+      - JWT_EXPIRES_IN=7d
+    depends_on:
+      - mongo
+    ports:
+      - "3000:3000"
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_BASE=/api
+    container_name: candidate_chat_web
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "8080:80"
+
+volumes:
+  mongo_data:
