@@ -75,18 +75,6 @@ Note:
   - JWT secret must be rotated and stored securely.
   - Add rate limiting and monitoring before production.
 
-## AI coding assistant usage (fill in during your work)
-Suggested template:
-- Where used:
-  - Used ChatGPT to scaffold initial NestJS modules and React routing.
-- Prompts:
-  - "Create a minimal NestJS API with JWT auth and a sessions resource stored in MongoDB."
-  - "Create a Vite React TS app with login, dashboard, and a simple chat UI."
-- Validation and overrides:
-  - Reviewed auth flow to ensure bcrypt hashing and JWT validation are correct.
-  - Adjusted scoring logic to be deterministic and testable.
-  - Added e2e tests using mongodb-memory-server to avoid external dependencies.
-
 ## Running tests
 Backend e2e:
 - cd api
